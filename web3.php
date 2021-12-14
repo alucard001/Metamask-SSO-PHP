@@ -47,10 +47,9 @@ if( isset( $data['signature'] ) ) {
 </head>
 <body>
 <script>
-// https://www.toptal.com/ethereum/one-click-login-flows-a-metamask-tutorial
-// https://www.quicknode.com/guides/web3-sdks/how-to-build-a-one-click-sign-in-using-metamask-with-php-s-laravel
 
 loginweb3();
+
 async function loginweb3(){
     if (! window.ethereum) {
         console.error('MetaMask not detected. Please try again from a MetaMask enabled browser.')
@@ -66,14 +65,14 @@ async function loginweb3(){
     const address = (await web3.eth.requestAccounts())[0];
     const signature = await web3.eth.personal.sign(message, address);
 
-    const url = 'web3.php';
     const data = {
         'message': message,
         'address': address,
         'signature': signature,
     };
 
-    const response = await fetch(url, {
+    // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    const response = await fetch('web3.php', {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
