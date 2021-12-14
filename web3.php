@@ -4,10 +4,6 @@ use Elliptic\EC;
 
 require_once('vendor/autoload.php');
 
-if( isset($_GET['request_nonce']) && $_GET['request_nonce'] === "1") {
-    print "mynonce";exit();
-}
-
 // https://stackoverflow.com/a/14890525/1802483
 $data = json_decode(file_get_contents("php://input"), true);
 
